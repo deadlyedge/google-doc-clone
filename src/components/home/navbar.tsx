@@ -1,7 +1,8 @@
-import Link from "next/link"
 import Image from "next/image"
-import { SearchInput } from "./search-input"
+import Link from "next/link"
 import { BsGithub } from "react-icons/bs"
+
+import { SearchInput } from "./search-input"
 
 export const Navbar = () => {
 	return (

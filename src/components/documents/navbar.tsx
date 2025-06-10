@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image"
-import Link from "next/link"
 import {
 	BoldIcon,
 	FileJsonIcon,
@@ -20,6 +18,8 @@ import {
 	UnderlineIcon,
 	Undo2Icon,
 } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 import { BsFilePdf } from "react-icons/bs"
 
 import {

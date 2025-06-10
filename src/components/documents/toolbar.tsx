@@ -2,10 +2,10 @@
 
 import { cn } from "@/lib/utils"
 import {
-	type LucideIcon,
 	BoldIcon,
 	ItalicIcon,
 	ListTodoIcon,
+	type LucideIcon,
 	MessageSquarePlusIcon,
 	PrinterIcon,
 	Redo2Icon,
@@ -21,16 +21,16 @@ import { useEditorStore } from "@/store/use-editor-store"
 import { Separator } from "@/components/ui/separator"
 
 import {
-	FontSizeButton,
-	FontFamilyButton,
-	ListButton,
 	AlignButton,
-	LinkButton,
-	ImageButton,
-	HighlightColorButton,
-	TextColorButton,
+	FontFamilyButton,
+	FontSizeButton,
 	HeadingLevelButton,
+	HighlightColorButton,
+	ImageButton,
 	LineHeightButton,
+	LinkButton,
+	ListButton,
+	TextColorButton,
 } from "./toolbar-tools"
 
 type ToolbarButtonProps = {

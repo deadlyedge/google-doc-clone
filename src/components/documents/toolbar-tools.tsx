@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import { cn } from "@/lib/utils"
 import type { Level } from "@tiptap/extension-heading"
-import { type ColorResult, CirclePicker, SketchPicker } from "react-color"
+import { CirclePicker, type ColorResult, SketchPicker } from "react-color"
 
 import {
 	AlignCenterIcon,
@@ -27,21 +27,21 @@ import {
 import { useEditorStore } from "@/store/use-editor-store"
 
 import {
+	Dialog,
+	DialogContent,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog"
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-	Dialog,
-	DialogContent,
-	DialogTitle,
-	DialogHeader,
-	DialogFooter,
-} from "@/components/ui/dialog"
 
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 const LineHeightButton = () => {
 	const { editor } = useEditorStore()

@@ -6,7 +6,7 @@ export const DocumentInput = () => {
 			<span className="text-lg px-1.5 cursor-pointer truncate">
 				Untitled Document
 			</span>
-      <BsCloudCheck className="text-green-500" />
+			<BsCloudCheck className="text-green-500" />
 		</div>
 	)
 }
