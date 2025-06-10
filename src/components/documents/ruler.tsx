@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
 
-import { DEFAULT_PAGE_MARGIN, MIN_PAGE_WIDTH, PAGE_WIDTH } from "@/constants"
+import { DEFAULT_PAGE_MARGIN, MIN_PAGE_WIDTH, PAGE_WIDTH } from "@/constants/page-size"
 import { cn } from "@/lib/utils"
 
 const markers = Array.from({ length: 83 }, (_, i) => i)
