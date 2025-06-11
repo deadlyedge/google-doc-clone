@@ -8,19 +8,19 @@ import { Input } from "@/components/ui/input"
 import { useSearchParam } from "@/hooks/use-search-param"
 
 export const SearchInput = () => {
-	const [search, setSearch] = useSearchParam("search")
-	const [value, setValue] = useState(search)
+	const [filter, setFilter] = useSearchParam("filter")
+	const [value, setValue] = useState(filter)
 
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value)
-		setSearch(e.target.value) // xdream note
+		setFilter(e.target.value) // xdream note
 	}
 
 	const handleClear = () => {
 		setValue("")
-		setSearch("")
+		setFilter("")
 		inputRef.current?.blur()
 	}
 

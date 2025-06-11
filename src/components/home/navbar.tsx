@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { BsGithub } from "react-icons/bs"
+import { UserButton, OrganizationSwitcher } from "@clerk/nextjs"
 
 import { SearchInput } from "./search-input"
 
@@ -20,8 +20,14 @@ export const Navbar = () => {
 				<h3 className="text-xl">Docs</h3>
 			</div>
 			<SearchInput />
-			<div className="mx-4">
-				<BsGithub className="size-6" />
+			<div className="flex gap-3 items-center pl-6">
+				<OrganizationSwitcher
+					afterCreateOrganizationUrl="/"
+					afterSelectOrganizationUrl="/"
+					afterLeaveOrganizationUrl="/"
+					afterSelectPersonalUrl="/"
+				/>
+				<UserButton />
 			</div>
 		</nav>
 	)

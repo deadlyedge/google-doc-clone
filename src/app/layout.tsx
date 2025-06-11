@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import { Noto_Serif } from "next/font/google"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
+import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
-import { ConvexClientProvider } from "@/components/convex-client-provider"
+
+import ConvexClientProvider from "@/components/convex-client-provider"
 
 const notoSerif = Noto_Serif({
 	subsets: ["latin"],
@@ -24,7 +26,14 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${notoSerif.className} antialiased`}>
 				<NuqsAdapter>
-					<ConvexClientProvider>{children}</ConvexClientProvider>
+					<ConvexClientProvider>
+						<Toaster
+							duration={5000}
+							position="bottom-center"
+							richColors={true}
+						/>
+						{children}
+					</ConvexClientProvider>
 				</NuqsAdapter>
 			</body>
 		</html>
