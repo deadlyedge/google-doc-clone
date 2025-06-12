@@ -140,9 +140,9 @@ export const Toolbar = () => {
 				label: "Comment",
 				Icon: MessageSquarePlusIcon,
 				onClick: () => {
-					// todo: add comment
+					editor?.chain().focus().addPendingComment().run()
 				},
-				isActive: false,
+				isActive: editor?.isActive("liveblocksCommentMark"),
 			},
 			{
 				label: "Remove Formatting",

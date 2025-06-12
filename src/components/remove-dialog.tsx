@@ -7,18 +7,18 @@ import type { Id } from "../../convex/_generated/dataModel"
 
 import {
 	AlertDialog,
-	AlertDialogTrigger,
+	AlertDialogAction,
+	AlertDialogCancel,
 	AlertDialogContent,
-	AlertDialogHeader,
-	AlertDialogTitle,
 	AlertDialogDescription,
 	AlertDialogFooter,
-	AlertDialogCancel,
-	AlertDialogAction,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-import { api } from "../../convex/_generated/api"
 import { ConvexError } from "convex/values"
+import { api } from "../../convex/_generated/api"
 
 type RemoveDialogProps = {
 	documentId: Id<"documents">

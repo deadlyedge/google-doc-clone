@@ -1,6 +1,6 @@
+import { paginationOptsValidator } from "convex/server"
 import { ConvexError, v } from "convex/values"
 import { mutation, query } from "./_generated/server"
-import { paginationOptsValidator } from "convex/server"
 
 export const create = mutation({
 	args: {
@@ -116,15 +116,34 @@ export const updateById = mutation({
 
 		if (!document) throw new ConvexError("Document not found")
 
+		const isOwner = document.ownerId === identity.subject
+		const isOrganizationMember =
+			organizationRole !== undefined && organizationRole !== null
+		// const isOrganizationMember = !!(document.organizationId && document.organizationId === identity.organizationId)
+		const isAdmin = organizationRole === "org:admin"
+
 		if (
-			document.ownerId !== identity.subject &&
-			organizationRole !== "org:admin"
+			// document.ownerId !== identity.subject &&
+			// organizationRole !== "org:admin"
+			!isOwner &&
+			// !isOrganizationMember &&
+			!isAdmin
 		) {
 			if (organizationRole !== "org:admin")
 				throw new ConvexError("Not Administrator")
+			// if (!isOwner) throw new ConvexError("Not owner of the document")
+			if (!isOrganizationMember)
+				throw new ConvexError("Not a member of the organization")
 			throw new ConvexError("Not authorized")
 		}
 
 		await ctx.db.patch(args.id, { title: args.title })
+	},
+})
+
+export const getById = query({
+	args: { id: v.id("documents") },
+	handler: async (ctx, { id }) => {
+		return await ctx.db.get(id)
 	},
 })

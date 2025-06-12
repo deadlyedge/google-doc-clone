@@ -10,8 +10,8 @@ import {
 	TableRow,
 } from "@/components/ui/table"
 import { LoaderIcon } from "lucide-react"
-import { DocumentRow } from "./document-row"
 import { Button } from "../ui/button"
+import { DocumentRow } from "./document-row"
 
 type DocumentsTableProps = {
 	documents: Doc<"documents">[] | undefined

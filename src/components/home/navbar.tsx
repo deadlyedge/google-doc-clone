@@ -1,6 +1,6 @@
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
-import { UserButton, OrganizationSwitcher } from "@clerk/nextjs"
 
 import { SearchInput } from "./search-input"
 

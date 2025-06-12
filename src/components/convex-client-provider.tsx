@@ -4,10 +4,10 @@ import { ClerkProvider, SignIn, useAuth } from "@clerk/nextjs"
 import { ConvexProviderWithClerk } from "convex/react-clerk"
 
 import {
-	ConvexReactClient,
-	Authenticated,
-	Unauthenticated,
 	AuthLoading,
+	Authenticated,
+	ConvexReactClient,
+	Unauthenticated,
 } from "convex/react"
 import { FullscreenLoader } from "./fullscreen-loader"
 

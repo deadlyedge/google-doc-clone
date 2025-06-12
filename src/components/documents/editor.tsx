@@ -1,5 +1,9 @@
 "use client"
 
+import {
+	FloatingToolbar,
+	useLiveblocksExtension,
+} from "@liveblocks/react-tiptap"
 import Color from "@tiptap/extension-color"
 // import Strike from "@tiptap/extension-strike"
 import FontFamily from "@tiptap/extension-font-family"
@@ -25,8 +29,10 @@ import { LineHeightExtension } from "@/extensions/line-height"
 import { useEditorStore } from "@/store/use-editor-store"
 
 import { Ruler } from "./ruler"
+import { Threads } from "./threads"
 
 export const Editor = () => {
+	const liveblocks = useLiveblocksExtension()
 	const { setEditor } = useEditorStore()
 
 	const editor = useEditor({
@@ -64,7 +70,10 @@ export const Editor = () => {
 			},
 		},
 		extensions: [
-			StarterKit,
+			liveblocks,
+			StarterKit.configure({
+				history: false,
+			}),
 			FontFamily,
 			TextStyle,
 			// Strike,
@@ -102,6 +111,8 @@ export const Editor = () => {
 			<Ruler />
 			<div className="min-w-max flex justify-center w-[816px] py-4 print:py-0 mx-auto print:w-full print:min-w-0">
 				<EditorContent editor={editor} />
+				<FloatingToolbar editor={editor} />
+				<Threads editor={editor} />
 			</div>
 		</div>
 	)
