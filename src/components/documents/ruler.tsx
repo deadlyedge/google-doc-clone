@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
+import { useStorage, useMutation } from "@liveblocks/react/suspense"
 
 import {
 	DEFAULT_PAGE_MARGIN,
@@ -11,8 +12,16 @@ import { cn } from "@/lib/utils"
 const markers = Array.from({ length: 83 }, (_, i) => i)
 
 export const Ruler = () => {
-	const [leftMargin, setLeftMargin] = useState(DEFAULT_PAGE_MARGIN)
-	const [rightMargin, setRightMargin] = useState(DEFAULT_PAGE_MARGIN)
+	const leftMargin =
+		useStorage((storage) => storage.leftMargin) ?? DEFAULT_PAGE_MARGIN
+	const setLeftMargin = useMutation(({ storage }, newLeftMargin) => {
+		storage.set("leftMargin", newLeftMargin)
+	}, [])
+	const rightMargin =
+		useStorage((storage) => storage.rightMargin) ?? DEFAULT_PAGE_MARGIN
+	const setRightMargin = useMutation(({ storage }, newRightMargin) => {
+		storage.set("rightMargin", newRightMargin)
+	}, [])
 
 	const [isDraggingLeft, setIsDraggingLeft] = useState(false)
 	const [isDraggingRight, setIsDraggingRight] = useState(false)
@@ -37,7 +46,7 @@ export const Ruler = () => {
 				if (isDraggingLeft) {
 					const maxLeftPosition = PAGE_WIDTH - rightMargin - MIN_PAGE_WIDTH
 					const newLeftPosition = Math.min(rawPosition, maxLeftPosition)
-					setLeftMargin(newLeftPosition) // TODO: make collaborative
+					setLeftMargin(newLeftPosition)
 				} else if (isDraggingRight) {
 					const maxRightPosition = PAGE_WIDTH - leftMargin - MIN_PAGE_WIDTH
 					const newRightPosition = Math.max(PAGE_WIDTH - rawPosition, 0)
@@ -68,7 +77,7 @@ export const Ruler = () => {
 			onMouseMove={handleMouseMove}
 			onMouseUp={handleMouseUp}
 			onMouseLeave={handleMouseUp}
-			className="w-[816px] mx-auto h-6 border-b border-gray-300 flex items-end relative select-none print:hidden">
+			className={`w-[${PAGE_WIDTH}px] mx-auto h-6 border-b border-gray-300 flex items-end relative select-none print:hidden`}>
 			<div id="ruler-container" className="w-full h-full relative">
 				<Marker
 					position={leftMargin}
@@ -85,7 +94,7 @@ export const Ruler = () => {
 					onDoubleClick={handleRightDoubleClick}
 				/>
 				<div className="absolute inset-x-0 bottom-0 h-full">
-					<div className="relative h-full w-[816px]">
+					<div className={`relative h-full w-[${PAGE_WIDTH}px]`}>
 						{markers.map((marker) => {
 							const position = (marker * PAGE_WIDTH) / 82
 

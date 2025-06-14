@@ -39,8 +39,9 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
 		} catch (error) {
 			if (error instanceof ConvexError) toast.error(error.data)
 			else toast.error("An error occurred while removing the document")
+		} finally {
+			setIsRemoving(false)
 		}
-		setIsRemoving(false)
 	}
 
 	return (

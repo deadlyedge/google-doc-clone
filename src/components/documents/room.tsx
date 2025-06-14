@@ -10,7 +10,9 @@ import {
 } from "@liveblocks/react/suspense"
 
 import { FullscreenLoader } from "../fullscreen-loader"
-import { getUsers } from "./actions"
+import { getUsers, getDocuments } from "./actions"
+import type { Id } from "../../../convex/_generated/dataModel"
+import { DEFAULT_PAGE_MARGIN } from "@/constants/page-size"
 
 type User = {
 	id: string
@@ -42,7 +44,16 @@ export function Room({ children }: { children: React.ReactNode }) {
 
 	return (
 		<LiveblocksProvider
-			authEndpoint="/api/liveblocks-auth"
+			authEndpoint={async () => {
+				const endpoint = "/api/liveblocks-auth"
+				const room = params.documentId as string
+
+				const response = await fetch(endpoint, {
+					method: "POST",
+					body: JSON.stringify({ room }),
+				})
+				return await response.json()
+			}}
 			throttle={16}
 			resolveUsers={({ userIds }) => {
 				return userIds.map(
@@ -58,8 +69,16 @@ export function Room({ children }: { children: React.ReactNode }) {
 				}
 				return filteredUsers.map((user) => user.id)
 			}}
-			resolveRoomsInfo={() => []}>
-			<RoomProvider id={roomId}>
+			resolveRoomsInfo={async ({ roomIds }) => {
+				const documents = await getDocuments(roomIds as Id<"documents">[])
+				return documents.map((document) => ({
+					id: document.id,
+					name: document.name,
+				}))
+			}}>
+			<RoomProvider
+				id={roomId}
+				initialStorage={{ leftMargin: DEFAULT_PAGE_MARGIN, rightMargin: DEFAULT_PAGE_MARGIN }}>
 				<ClientSideSuspense
 					fallback={<FullscreenLoader label="Room loading..." />}>
 					{children}
