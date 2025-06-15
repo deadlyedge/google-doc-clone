@@ -41,15 +41,15 @@ import {
 
 import { useEditorStore } from "@/store/use-editor-store"
 
-import { DocumentInput } from "./document-input"
-import { Avatars } from "./avatars"
-import { Inbox } from "./inbox"
-import { RenameDialog } from "../rename-dialog"
 import { RemoveDialog } from "../remove-dialog"
+import { RenameDialog } from "../rename-dialog"
+import { Avatars } from "./avatars"
+import { DocumentInput } from "./document-input"
+import { Inbox } from "./inbox"
 
-import type { Doc } from "../../../convex/_generated/dataModel"
-import { api } from "../../../convex/_generated/api"
 import { toast } from "sonner"
+import { api } from "../../../convex/_generated/api"
+import type { Doc } from "../../../convex/_generated/dataModel"
 
 type NavbarProps = {
 	data: Doc<"documents">

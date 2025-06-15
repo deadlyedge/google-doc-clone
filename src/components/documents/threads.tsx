@@ -1,9 +1,9 @@
-import { ClientSideSuspense, useThreads } from "@liveblocks/react/suspense"
 import {
 	AnchoredThreads,
 	FloatingComposer,
 	FloatingThreads,
 } from "@liveblocks/react-tiptap"
+import { ClientSideSuspense, useThreads } from "@liveblocks/react/suspense"
 import type { Editor } from "@tiptap/react"
 
 export function Threads({ editor }: { editor: Editor | null }) {

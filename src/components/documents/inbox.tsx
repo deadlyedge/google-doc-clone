@@ -1,16 +1,16 @@
 "use client"
 
 import { ClientSideSuspense } from "@liveblocks/react"
-import { useInboxNotifications } from "@liveblocks/react/suspense"
 import { InboxNotification, InboxNotificationList } from "@liveblocks/react-ui"
+import { useInboxNotifications } from "@liveblocks/react/suspense"
 
-import { BellIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
+import { BellIcon } from "lucide-react"
 import { Separator } from "../ui/separator"
 
 export const Inbox = () => {

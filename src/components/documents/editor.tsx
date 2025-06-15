@@ -30,12 +30,9 @@ import { FontSizeExtension } from "@/extensions/font-size"
 import { LineHeightExtension } from "@/extensions/line-height"
 import { useEditorStore } from "@/store/use-editor-store"
 
+import { DEFAULT_PAGE_MARGIN, PAGE_WIDTH } from "@/constants/page-size"
 import { Ruler } from "./ruler"
 import { Threads } from "./threads"
-import {
-	DEFAULT_PAGE_MARGIN,
-	PAGE_WIDTH,
-} from "@/constants/page-size"
 
 type EditorProps = {
 	initialContent?: string | undefined

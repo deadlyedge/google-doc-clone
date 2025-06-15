@@ -1,14 +1,14 @@
+import { useStatus } from "@liveblocks/react"
+import { useMutation } from "convex/react"
 import { useRef, useState } from "react"
 import { BsCloudCheck, BsCloudSlash } from "react-icons/bs"
 import { toast } from "sonner"
-import { useStatus } from "@liveblocks/react"
-import { useMutation } from "convex/react"
 
 import { useDebounce } from "@/hooks/use-debounce"
 
-import type { Id } from "../../../convex/_generated/dataModel"
-import { api } from "../../../convex/_generated/api"
 import { LoaderIcon } from "lucide-react"
+import { api } from "../../../convex/_generated/api"
+import type { Id } from "../../../convex/_generated/dataModel"
 
 type DocumentInputProps = {
 	title: string

@@ -1,23 +1,24 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
-import { useParams } from "next/navigation"
-import { toast } from "sonner"
 import {
 	ClientSideSuspense,
 	LiveblocksProvider,
 	RoomProvider,
 } from "@liveblocks/react/suspense"
+import { useParams } from "next/navigation"
+import { useEffect, useMemo, useState } from "react"
+import { toast } from "sonner"
 
-import { FullscreenLoader } from "../fullscreen-loader"
-import { getUsers, getDocuments } from "./actions"
-import type { Id } from "../../../convex/_generated/dataModel"
 import { DEFAULT_PAGE_MARGIN } from "@/constants/page-size"
+import type { Id } from "../../../convex/_generated/dataModel"
+import { FullscreenLoader } from "../fullscreen-loader"
+import { getDocuments, getUsers } from "./actions"
 
 type User = {
 	id: string
 	name: string
 	avatar: string
+	color: string
 }
 
 export function Room({ children }: { children: React.ReactNode }) {
@@ -78,7 +79,10 @@ export function Room({ children }: { children: React.ReactNode }) {
 			}}>
 			<RoomProvider
 				id={roomId}
-				initialStorage={{ leftMargin: DEFAULT_PAGE_MARGIN, rightMargin: DEFAULT_PAGE_MARGIN }}>
+				initialStorage={{
+					leftMargin: DEFAULT_PAGE_MARGIN,
+					rightMargin: DEFAULT_PAGE_MARGIN,
+				}}>
 				<ClientSideSuspense
 					fallback={<FullscreenLoader label="Room loading..." />}>
 					{children}

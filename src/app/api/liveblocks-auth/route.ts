@@ -1,5 +1,5 @@
-import { Liveblocks } from "@liveblocks/node"
 import { auth, currentUser } from "@clerk/nextjs/server"
+import { Liveblocks } from "@liveblocks/node"
 import { ConvexHttpClient } from "convex/browser"
 import { api } from "../../../../convex/_generated/api"
 
@@ -45,14 +45,22 @@ export async function POST(request: Request) {
 		return new Response("Unauthorized", { status: 401 })
 	}
 
+	const name =
+		user.fullName ??
+		user.username ??
+		user.primaryEmailAddress?.emailAddress ??
+		"Anonymous"
+	const nameToNumber = name
+		.split("")
+		.reduce((acc, char) => acc + char.charCodeAt(0), 0)
+	const hue = nameToNumber % 360
+	const color = `hsl(${hue}, 80%, 40%)`
+
 	const session = liveblocks.prepareSession(user.id, {
 		userInfo: {
-			name:
-				user.fullName ??
-				user.username ??
-				user.primaryEmailAddress?.emailAddress ??
-				"Anonymous",
+			name,
 			avatar: user.imageUrl,
+			color,
 		},
 	})
 	session.allow(room, session.FULL_ACCESS)

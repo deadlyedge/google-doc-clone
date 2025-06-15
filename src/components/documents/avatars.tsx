@@ -1,9 +1,9 @@
 "use client"
 
-import Image from "next/image"
-import { useOthers, useSelf } from "@liveblocks/react/suspense"
-import { ClientSideSuspense } from "@liveblocks/react"
 import { AVATAR_SIZE } from "@/constants/document"
+import { ClientSideSuspense } from "@liveblocks/react"
+import { useOthers, useSelf } from "@liveblocks/react/suspense"
+import Image from "next/image"
 
 import { Separator } from "@/components/ui/separator"
 

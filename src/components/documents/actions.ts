@@ -4,8 +4,8 @@ import type { SessionClaimsType } from "@/types"
 import { auth, clerkClient } from "@clerk/nextjs/server"
 import { ConvexHttpClient } from "convex/browser"
 
-import type { Id } from "../../../convex/_generated/dataModel"
 import { api } from "../../../convex/_generated/api"
+import type { Id } from "../../../convex/_generated/dataModel"
 
 const convex = new ConvexHttpClient(
 	process.env.NEXT_PUBLIC_CONVEX_URL as string,
@@ -32,6 +32,7 @@ export async function getUsers() {
 			user.primaryEmailAddress?.emailAddress ??
 			"Anonymous",
 		avatar: user.imageUrl,
+		color: "",
 	}))
 
 	return users

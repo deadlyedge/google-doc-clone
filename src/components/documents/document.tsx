@@ -4,7 +4,7 @@ import { Editor } from "@/components/documents/editor"
 import { Navbar } from "@/components/documents/navbar"
 import { Room } from "@/components/documents/room"
 import { Toolbar } from "@/components/documents/toolbar"
-import { usePreloadedQuery, type Preloaded } from "convex/react"
+import { type Preloaded, usePreloadedQuery } from "convex/react"
 import type { api } from "../../../convex/_generated/api"
 
 type DocumentProps = {

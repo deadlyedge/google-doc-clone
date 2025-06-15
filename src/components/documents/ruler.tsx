@@ -1,6 +1,6 @@
+import { useMutation, useStorage } from "@liveblocks/react/suspense"
 import { useRef, useState } from "react"
 import { FaCaretDown } from "react-icons/fa"
-import { useStorage, useMutation } from "@liveblocks/react/suspense"
 
 import {
 	DEFAULT_PAGE_MARGIN,
